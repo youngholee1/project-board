@@ -6,16 +6,19 @@ import com.fastcampus.projectboard.domain.ArticleComment;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+//@ActiveProfiles("testdb")
 @DisplayName("JPA 연결 테스트")
 @Import(JpaConfig.class)
 //@DataJpaTest
@@ -71,19 +74,17 @@ class JpaRepositoryTest {
     void givenTestData_whenDeleting_thenWorkFine() {
 
         // Given
-        Article article = articleRepository.findById(1L).orElseThrow();
+        Article article = articleRepository.findById(1L).orElseThrow(); // 첫번째에 해당하는 Long 타입
         long previusArticleCount = articleRepository.count();
         long previusArticleCommentCount = articleCommentRepository.count();
         int deletedCommnetsSize = article.getArticleComments().size();
-
 
         // When
         articleRepository.delete(article);
 
         // Then
-        assertThat(articleRepository.count()).isEqualTo(previusArticleCount - 1 ));
-        assertThat(articleCommentRepository.count()).isEqualTo(previusArticleCount - 1 ));
-
+        assertThat(articleRepository.count()).isEqualTo(previusArticleCount - 1 );
+        assertThat(articleCommentRepository.count()).isEqualTo(previusArticleCommentCount - deletedCommnetsSize );
     }
 
 }
