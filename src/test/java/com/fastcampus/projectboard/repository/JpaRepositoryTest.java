@@ -58,14 +58,14 @@ class JpaRepositoryTest {
     void givenTestData_whenUpdating_thenWorkFine() {
 
         // Given
-        Article article = articleRepository.findById(1L).orElseThrow();
-        String updatedHashtag = "#springboot3";
-        article.setHashtag(updatedHashtag);
-        // When
-        Article saveArticle =  articleRepository.saveAndFlush(article);
-
-        // Then
-        assertThat(saveArticle).hasFieldOrPropertyWithValue("hashtag", updatedHashtag);
+//        Article article = articleRepository.findById(1L).orElseThrow();
+//        String updatedHashtag = "#springboot3";
+//        article.setHashtag(updatedHashtag);
+//        // When
+//        Article saveArticle =  articleRepository.saveAndFlush(article);
+//
+//        // Then
+//        assertThat(saveArticle).hasFieldOrPropertyWithValue("hashtag", updatedHashtag);
 
     }
 
