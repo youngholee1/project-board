@@ -1,6 +1,7 @@
 package com.fastcampus.projectboard.Controller;
 
 
+import com.fastcampus.projectboard.config.SecurityConfig;
 import com.fastcampus.projectboard.controller.ArticleController;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -28,6 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("View 컨트롤러 - 게시글")
+@Import(SecurityConfig.class)
 @WebMvcTest(ArticleController.class)
 class ArticleControllerTest {
 
@@ -52,7 +54,6 @@ class ArticleControllerTest {
                 .andExpect(model().attributeExists("articles"));
     }
 
-    @Disabled("테스트 중")
     @DisplayName("[view][GET] 게시글 상세 페이지 - 정상 호출")
     @Test
     public void givenNothing_whenRequestArticleView_thenReturnsArticleView() throws Exception {
@@ -64,8 +65,8 @@ class ArticleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("articles/detail"))
-                .andExpect(model().attributeExists("articles"))
-                .andExpect(model().attributeExists("articlesComments"));
+                .andExpect(model().attributeExists("article"))
+                .andExpect(model().attributeExists("articleComments"));
 
     }
 

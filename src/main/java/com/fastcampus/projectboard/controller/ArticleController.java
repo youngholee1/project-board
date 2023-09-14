@@ -20,7 +20,7 @@ public class ArticleController {
 
     @GetMapping("/{articleId}")
     public String article(@PathVariable Long articleId, ModelMap map) {
-        map.addAttribute("article", null); // 추후에 dto 넣을 예정
+        map.addAttribute("article", "article"); // 추후에 dto 넣을 예정
         map.addAttribute("articleComments", List.of()); // 추후에 dto 넣을 예정
         return "articles/detail";
     }
