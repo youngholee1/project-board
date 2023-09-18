@@ -39,6 +39,7 @@ class ArticleControllerTest {
         this.mvc = mvc;
     }
 
+
 //    @Disabled("테스트 중")
     @DisplayName("[view][GET] 게시글 리스트 (게시판) 페이지 - 정상 호출")
     @Test
